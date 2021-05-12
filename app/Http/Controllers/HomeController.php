@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\User;
+use App\Models\Berita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -105,10 +106,50 @@ class HomeController extends Controller
         $user->delete();
         return redirect()->route('user')->with('pesan',"Hapus data $user->name berhasil");
     }
+
     //berita
     public function berita()
     {
-        return view('admin/admin_berita');
+        $berita = Berita::all();
+        return view('admin.admin_berita',['berita' => $berita]);
+    }
+    public function store_berita(Request $request)
+    {
+        $validateData = $request->validate([
+
+            'judul'         => 'required', 'string', 'max:255',
+            'gambar'        => 'required',
+            'isi'           => 'required',
+            'nama_kategori'   => 'nama_kategori',
+            ]);
+
+            $berita = new Berita();
+            $berita->judul = $validateData['judul'];
+            $berita->gambar = $validateData['gambar'];
+            $berita->isi = $validateData['isi'];
+            $berita->nama_kategori = $validateData['nama_kategori'];
+            $berita->save();
+
+            return redirect()->route('berita')->with('pesan',"Penambahan data {$validateData['name']} berhasil");
+    }
+    public function edit_berita(Berita $berita)
+    {
+        return view('admin.berita_edit',['berita' => $berita]);
+    }
+    public function update_berita(Request $request, Berita $berita)
+    {
+        $validateData = $request->validate([
+            'name'         => 'required', 'string', 'max:255',
+            'email'        => 'required', 'string', 'email', 'max:255', 'unique:users',
+            ]);
+
+            Berita::where('id',$berita->id)->update($validateData);
+            return redirect()->route('berita')->with('pesan',"Update data {$validateData['name']} berhasil");
+    }
+    public function destroy_berita(Berita $berita)
+    {
+        $berita->delete();
+        return redirect()->route('berita')->with('pesan',"Hapus data $berita->name berhasil");
     }
 
     //gallery
