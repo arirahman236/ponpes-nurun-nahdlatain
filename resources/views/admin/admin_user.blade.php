@@ -27,18 +27,29 @@
                   <thead>
                     <tr>
                       <th>No.</th>
-                      <th>Nama Kategori</th>
-                      <th>Menu</th>
+                      <th>Nama</th>
+                      <th>Email</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @forelse ($kategori as $kategori)
+                    @forelse ($user as $user)
+                    @if ($user->level=="user")
                         <tr>
                             <th>{{$loop->iteration}}</th>
-                            <td>{{$kategori->nama_kategori}}</td>
-                            <td>{{$kategori->id_menu}}</td>
+                            <td><a href="{{ route('users.edit',['user'=>$user->id]) }}">{{$user->name}}</a></td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->level}}</td>
+                            <td>
+                                <form action="{{route('users.destroy', $user->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button onclick="" name="delete" data-name="{{ $user->name }}" class="btn btn-danger btn-sm btnAction delete-confirm" type="submit" role="button"><i class="fas fa-trash"></i></button>
+                              </form>
+                            </td>
                         </tr>
+                        @endif
                     @empty
                     <td colspan="6" class="text-center">Tidak ada data...</td>
                     @endforelse
@@ -53,7 +64,7 @@
          <!-- Modal Tambah -->
 <div id="tambahModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-    <form class="form-horizontal" action="{{ route('kategoris.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="form-horizontal" action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
       <!-- Modal content-->
       @csrf
       <div class="modal-content">
@@ -63,32 +74,35 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-                <label for="inputPassword3" class="control-label">Nama Kategori</label>
-                <input type="text" name="nama_kategori"  class="form-control @error('nama_kategori') is-invalid @enderror" id="nama_kategori" name="nama_kategori" value="{{ old('nama_kategori') }}" required placeholder="Masukkan Nama Kategori" >
-                @error('nama_kategori')
-                    <div class="text-danger">{{ $message }}</div>
+                <label for="inputPassword3" class="control-label">{{ __('Name') }}</label>
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                 @enderror
             </div>
-
-              <div class="form-group">
-                <label for="inputPassword3" class="control-label">Menu</label>
-                <select class="form-control" name="id_menu" id="id_menu">
-                    <option value="Berita"
-                    {{ old('id_menu')=='Berita' ? 'selected': '' }} >
-                    Berita
-                    </option>
-                    <option value="Gallery"
-                    {{ old('id_menu')=='Gallery' ? 'selected': '' }} >
-                    Gallery
-                    </option>
-                    <option value="About"
-                    {{ old('id_menu')=='About' ? 'selected': '' }} >
-                    About
-                    </option>
-                </select>
-                  @error('id_menu')
-                    <div class="text-danger">{{ $message }}</div>
-                  @enderror
+            <div class="form-group">
+                <label for="inputPassword3" class="control-label">{{ __('E-Mail Address') }}</label>
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="control-label">{{ __('Password') }}</label>
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="control-label">{{ __('Confirm Password') }}</label>
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
             </div>
         </div>
         <div class="modal-footer">

@@ -40,6 +40,7 @@
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/tugas_mvc">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
+          {{-- <img class="img-profile rounded-circle" src="img/logo.png"> --}}
         </div>
         <div class="sidebar-brand-text mx-3">Ponpes</div>
       </a>
@@ -71,11 +72,12 @@
                 <span>User</span>
                 </a>
             </li>
+     <hr class="sidebar-divider d-none d-md-block">
       @endif
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('berita') }}">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-wrench"></i>
           <span>Berita</span>
         </a>
       </li>

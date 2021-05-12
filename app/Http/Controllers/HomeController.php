@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,7 +69,42 @@ class HomeController extends Controller
         $user = User::all();
         return view('admin.admin_user',['user' => $user]);
     }
+    public function store_user(Request $request)
+    {
+        $validateData = $request->validate([
 
+            'name'         => 'required', 'string', 'max:255',
+            'email'        => 'required', 'string', 'email', 'max:255', 'unique:users',
+            'password'     => 'required', 'string', 'min:8', 'confirmed',
+            ]);
+
+            $user = new User();
+            $user->name = $validateData['name'];
+            $user->email = $validateData['email'];
+            $user->password = Hash::make($validateData['email']);
+            $user->save();
+
+            return redirect()->route('user')->with('pesan',"Penambahan data {$validateData['name']} berhasil");
+    }
+    public function edit_user(User $user)
+    {
+        return view('admin.user_edit',['user' => $user]);
+    }
+    public function update_user(Request $request, User $user)
+    {
+        $validateData = $request->validate([
+            'name'         => 'required', 'string', 'max:255',
+            'email'        => 'required', 'string', 'email', 'max:255', 'unique:users',
+            ]);
+
+            User::where('id',$user->id)->update($validateData);
+            return redirect()->route('user')->with('pesan',"Update data {$validateData['name']} berhasil");
+    }
+    public function destroy_user(User $user)
+    {
+        $user->delete();
+        return redirect()->route('user')->with('pesan',"Hapus data $user->name berhasil");
+    }
     //berita
     public function berita()
     {

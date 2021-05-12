@@ -14,46 +14,35 @@
 
             <div class="container-fluid">
                 <div class="text-center p-4">
-                    <h1>Edit Kategori</h1>
+                    <h1>Edit User</h1>
                 </div>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-body">
-                        <form action="{{ route('kategoris.update',['kategori' => $kategori->id]) }}" method="POST">
+                        <form action="{{ route('users.update',['user' => $user->id]) }}" method="POST">
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
-                                <label for="nim">Nama Kategori</label>
-                                <input type="text" class="form-control @error('nama_kategori') is-invalid @enderror" id="nama_kategori" name="nama_kategori" value="{{ old('nama_kategori') ?? $kategori->nama_kategori}}">
-                                @error('nama_kategori')
+                                <label for="nim">{{ __('Name') }}</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') ?? $user->name}}">
+                                @error('name')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-
                             <div class="form-group">
-                                <label for="nama">Menu</label>
-                                <select class="form-control" name="id_menu" id="id_menu">
-                                    <option value="Berita"
-                                    {{ (old('id_menu') ?? $kategori->id_menu)==
-                                    'Berita' ? 'selected': '' }} >
-                                    Berita
-                                    </option>
-                                    <option value="Gallery"
-                                    {{ (old('id_menu') ?? $kategori->id_menu)==
-                                    'Gallery' ? 'selected': '' }} >
-                                    Gallery
-                                    </option>
-                                    <option value="About"
-                                    {{ (old('id_menu') ?? $kategori->id_menu)==
-                                    'About' ? 'selected': '' }} >
-                                    About
-                                    </option>
-                                </select>
-                                  @error('id_menu')
+                                <label for="nim">{{ __('E-Mail Address') }}</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') ?? $user->email}}">
+                                @error('email')
                                     <div class="text-danger">{{ $message }}</div>
-                                  @enderror
+                                @enderror
                             </div>
-
+                            {{-- <div class="form-group">
+                                <label for="nim">{{ __('Password') }}</label>
+                                <input type="text" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') ?? Hash::check($user->password)}}">
+                                @error('password')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div> --}}
                             <button type="submit" class="btn btn-primary mb-2">Edit</button>
                         </form>
                     </div>
