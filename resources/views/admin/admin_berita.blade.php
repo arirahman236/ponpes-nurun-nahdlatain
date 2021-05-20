@@ -34,9 +34,9 @@
                         <tr>
                             <th>{{$loop->iteration}}</th>
                             <td><a href="{{ route('beritas.edit',['berita'=>$berita->id]) }}">{{$berita->judul}}</a></td>
-                            <td>{{$berita->gambar}}</td>
+                            <td><img src="{{ asset($berita->gambar) }}" class="cover-img" style="width: 100px;"></td>
                             <td>{{$berita->isi}}</td>
-                            <td>{{$berita->kategori}}</td>
+                            <td>{{$berita->nama_kategori}}</td>
                             <td>
                                 <form action="{{route('beritas.destroy', $berita->id)}}" method="post">
                                     @csrf
@@ -46,6 +46,8 @@
                             </td>
                         </tr>
                     @empty
+                        <td colspan="6" class="text-center">Tidak ada data...</td>
+                    @endforelse
                   </tbody>
                 </table>
               </div>
@@ -57,7 +59,7 @@
         <!-- Modal Tambah -->
         <div id="tambahModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
-                <form class="form-horizontal" action="{{ route('kategoris.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" action="{{ route('beritas.store') }}" method="POST" enctype="multipart/form-data">
                 <!-- Modal content-->
                 @csrf
                     <div class="modal-content">
@@ -82,15 +84,22 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword3" class="control-label">Kategori</label>
-                                <input type="text" name="nama_kategori"  class="form-control @error('nama_kategori') is-invalid @enderror" id="nama_kategori" name="nama_kategori" value="{{ old('nama_kategori') }}" required placeholder="Masukkan Nama Kategori" >
+                                <select name="nama_kategori" id="nama_kategori" class="form-control">
+                                    @forelse ($kategori as $kategoris)
+                                            <option value="{{$kategoris->nama_kategori}}">{{$kategoris->nama_kategori}}</option>
+                                        @empty
+                                        Tidak ada data...
+                                    @endforelse
+                                  </select>
                                 @error('nama_kategori')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword3" class="control-label">Isi</label>
-                                <input type="text" name="nama_kategori"  class="form-control @error('nama_kategori') is-invalid @enderror" id="nama_kategori" name="nama_kategori" value="{{ old('nama_kategori') }}" required placeholder="Masukkan Nama Kategori" >
-                                @error('nama_kategori')
+                                <textarea class="form-control" id="isi" rows="3"
+                                name="isi">{{ old('isi') }}</textarea>
+                                @error('isi')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

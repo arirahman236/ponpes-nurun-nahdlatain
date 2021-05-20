@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\User;
 use App\Models\Berita;
+use App\Models\Gallery;
+use App\Models\About;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\File;
 class HomeController extends Controller
 {
 
@@ -111,7 +113,8 @@ class HomeController extends Controller
     public function berita()
     {
         $berita = Berita::all();
-        return view('admin.admin_berita',['berita' => $berita]);
+        $kategori = Kategori::where('id_menu', '=', 'Berita')->get();
+        return view('admin.admin_berita',['berita' => $berita], ['kategori' => $kategori]);
     }
     public function store_berita(Request $request)
     {
@@ -120,47 +123,161 @@ class HomeController extends Controller
             'judul'         => 'required', 'string', 'max:255',
             'gambar'        => 'required',
             'isi'           => 'required',
-            'nama_kategori'   => 'nama_kategori',
+            'nama_kategori'   => 'required',
             ]);
+            $extFile = $request->gambar->getClientOriginalExtension();
+            $namFile = 'berita-'.$validateData['judul'].".".$extFile;
+            $path = $request->gambar->move('image',$namFile);
 
             $berita = new Berita();
             $berita->judul = $validateData['judul'];
-            $berita->gambar = $validateData['gambar'];
+            $berita->gambar = $path;
             $berita->isi = $validateData['isi'];
             $berita->nama_kategori = $validateData['nama_kategori'];
             $berita->save();
 
-            return redirect()->route('berita')->with('pesan',"Penambahan data {$validateData['name']} berhasil");
+            return redirect()->route('berita')->with('pesan',"Penambahan berita {$validateData['judul']} berhasil");
     }
     public function edit_berita(Berita $berita)
     {
-        return view('admin.berita_edit',['berita' => $berita]);
+        $kategori = Kategori::where('id_menu', '=', 'Berita')->get();
+        return view('admin.berita_edit',['berita' => $berita], ['kategori' => $kategori]);
     }
     public function update_berita(Request $request, Berita $berita)
+    {
+        $validateData = $request->validate([
+            'judul'         => 'required', 'string', 'max:255',
+            'gambar'        => '',
+            'isi'           => 'required',
+            'nama_kategori'   => 'required',
+            ]);
+
+            $berita = Berita::find($berita->id);
+            $berita->judul = $validateData['judul'];
+            $berita->isi = $validateData['isi'];
+            $berita->nama_kategori = $validateData['nama_kategori'];
+
+            if($request->hasFile('gambar')){
+                $oldImagePath = 'image/'.$berita->gambar;
+                if(File::exists($oldImagePath)){
+                    File::delete($oldImagePath);
+                }
+                $extFile = $request->gambar->getClientOriginalExtension();
+                $namFile = 'berita-'.$validateData['judul'].".".$extFile;
+                $newImagePath = $validateData['gambar']->move('image',$namFile);
+
+                $berita->gambar = $newImagePath;
+            }
+
+            $berita->save();
+
+            return redirect()->route('berita')->with('pesan',"Update data {$validateData['judul']} berhasil");
+    }
+    public function destroy_berita(Berita $berita)
+    {
+        $oldImagePath = 'image/'.$berita->gambar;
+                if(File::exists($oldImagePath)){
+                    File::delete($oldImagePath);
+        }
+        $berita->delete();
+        return redirect()->route('berita')->with('pesan',"Hapus data $berita->judul berhasil");
+    }
+
+    //gallery
+    public function gallery()
+    {
+        $gallery = Gallery::all();
+        $kategori = Kategori::where('id_menu', '=', 'Gallery')->get();
+        return view('admin.admin_gallery',['gallery' => $gallery], ['kategori' => $kategori]);
+    }
+    public function store_gallery(Request $request)
+    {
+        $validateData = $request->validate([
+
+            'judul'         => 'required', 'string', 'max:255',
+            'gambar'        => 'required',
+            'isi'           => 'required',
+            'nama_kategori'   => 'required',
+            ]);
+            $extFile = $request->gambar->getClientOriginalExtension();
+            $namFile = 'gallery-'.$validateData['judul'].".".$extFile;
+            $path = $request->gambar->move('image',$namFile);
+
+            $gallery = new Gallery();
+            $gallery->judul = $validateData['judul'];
+            $gallery->gambar = $path;
+            $gallery->isi = $validateData['isi'];
+            $gallery->nama_kategori = $validateData['nama_kategori'];
+            $gallery->save();
+
+            return redirect()->route('gallery')->with('pesan',"Penambahan gallery {$validateData['judul']} berhasil");
+    }
+    public function edit_gallery(Gallery $gallery)
+    {
+        return view('admin.gallery_edit',['gallery' => $gallery]);
+    }
+    public function update_gallery(Request $request, Gallery $gallery)
     {
         $validateData = $request->validate([
             'name'         => 'required', 'string', 'max:255',
             'email'        => 'required', 'string', 'email', 'max:255', 'unique:users',
             ]);
 
-            Berita::where('id',$berita->id)->update($validateData);
-            return redirect()->route('berita')->with('pesan',"Update data {$validateData['name']} berhasil");
+            Gallery::where('id',$gallery->id)->update($validateData);
+            return redirect()->route('gallery')->with('pesan',"Update data {$validateData['judul']} berhasil");
     }
-    public function destroy_berita(Berita $berita)
+    public function destroy_gallery(Gallery $gallery)
     {
-        $berita->delete();
-        return redirect()->route('berita')->with('pesan',"Hapus data $berita->name berhasil");
-    }
-
-    //gallery
-    public function gallery()
-    {
-        return view('admin/admin_gallery');
+        $gallery->delete();
+        return redirect()->route('gallery')->with('pesan',"Hapus data $gallery->judul berhasil");
     }
 
     //about
     public function about()
     {
-        return view('admin/admin_about');
+        $about = About::all();
+        $kategori = Kategori::where('id_menu', '=', 'About')->get();
+        return view('admin.admin_about',['about' => $about], ['kategori' => $kategori]);
+    }
+    public function store_about(Request $request)
+    {
+        $validateData = $request->validate([
+
+            'judul'         => 'required', 'string', 'max:255',
+            'gambar'        => 'required',
+            'isi'           => 'required',
+            'nama_kategori'   => 'required',
+            ]);
+            $extFile = $request->gambar->getClientOriginalExtension();
+            $namFile = 'about-'.$validateData['judul'].".".$extFile;
+            $path = $request->gambar->move('image',$namFile);
+
+            $about = new About();
+            $about->judul = $validateData['judul'];
+            $about->gambar = $path;;
+            $about->isi = $validateData['isi'];
+            $about->nama_kategori = $validateData['nama_kategori'];
+            $about->save();
+
+            return redirect()->route('about')->with('pesan',"Penambahan about {$validateData['judul']} berhasil");
+    }
+    public function edit_about(About $about)
+    {
+        return view('admin.about_edit',['about' => $about]);
+    }
+    public function update_about(Request $request, About $about)
+    {
+        $validateData = $request->validate([
+            'judul'         => 'required', 'string', 'max:255',
+            'email'        => 'required', 'string', 'email', 'max:255', 'unique:users',
+            ]);
+
+            About::where('id',$about->id)->update($validateData);
+            return redirect()->route('about')->with('pesan',"Update data {$validateData['judul']} berhasil");
+    }
+    public function destroy_about(About $about)
+    {
+        $about->delete();
+        return redirect()->route('about')->with('pesan',"Hapus data $about->judul berhasil");
     }
 }
