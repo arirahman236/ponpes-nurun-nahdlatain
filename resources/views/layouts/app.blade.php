@@ -45,15 +45,39 @@
         <nav class="nav-menu d-none d-lg-block">
             <ul>
                 <li class="active"><a href="index">Beranda</a></li>
-                <li><a href="#berita">Berita</a></li>
-                <li class="drop-down"><a href="#gallery">Gallery</a></li>
+                <li class="drop-down"><a href="">Berita</a>
+                    <ul>
+                    @forelse ($berita as $beritas)
+                    <li><a href="{{ url('beritaa/'.$beritas->nama_kategori) }}">{{$beritas->nama_kategori}}</a></li>
+                        @empty
+                        Tidak ada data...
+                    @endforelse
+                    </ul>
+                </li>
+                <li class="drop-down"><a href="">Gallery</a>
+                    <ul>
+                    @forelse ($gallery as $gallerys)
+                    <li><a href="{{$gallerys->nama_kategori}}">{{$gallerys->nama_kategori}}</a></li>
+                        @empty
+                        Tidak ada data...
+                    @endforelse
+                    </ul>
+                </li>
+                <li class="drop-down"><a href="">About</a>
+                    <ul>
+                    @forelse ($about as $abouts)
+                    <li><a href="{{$abouts->nama_kategori}}">{{$abouts->nama_kategori}}</a></li>
+                        @empty
+                        Tidak ada data...
+                    @endforelse
+                    </ul>
+                </li>
                 {{-- <li class="drop-down"><a href="">Yayasan</a>
                     <ul>
                         <li><a href="#foto">Islamiyah Syafi'iyah</a></li>
                         <li><a href="#video">Yayasan 2</a></li>
                     </ul>
                 </li> --}}
-                <li><a href="#about">About</a></li>
                 <li>
                     <form type="get" action="/search/" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                         <div class="input-group">

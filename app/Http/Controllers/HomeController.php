@@ -338,4 +338,8 @@ class HomeController extends Controller
         $about->delete();
         return redirect()->route('about')->with('pesan',"Hapus data $about->judul berhasil");
     }
+    public function asd($berita)
+    {
+        return view('berita',['berita' => $berita]);
+    }
 }

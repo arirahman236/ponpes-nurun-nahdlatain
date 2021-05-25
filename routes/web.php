@@ -15,11 +15,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-
-    return view('welcome');
-});
-//Route::get('/', [App\Http\Controllers\HomeController::class,'store_user'] )->name('users.store');
+Route::get('/', [App\Http\Controllers\ProfileController::class, 'profil']);
+Route::get('/beranda', [App\Http\Controllers\ProfileController::class, 'beranda'])->name('profile.beranda');
+Route::get('/beritaa/{berita}', [App\Http\Controllers\HomeController::class,'asd'] )->name('tastas');
 
 Auth::routes();
 
