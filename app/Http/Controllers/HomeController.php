@@ -20,6 +20,11 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function profil()
+    {
+        return view('admin.admin_home');
+    }
+
     public function home()
     {
         return view('admin.admin_home');
@@ -126,7 +131,7 @@ class HomeController extends Controller
             'nama_kategori'   => 'required',
             ]);
             $extFile = $request->gambar->getClientOriginalExtension();
-            $namFile = 'berita-'.$validateData['judul'].".".$extFile;
+            $namFile = 'berita-'.time().rand(100,999).".".$extFile;
             $path = $request->gambar->move('image',$namFile);
 
             $berita = new Berita();
@@ -150,7 +155,7 @@ class HomeController extends Controller
             'gambar'        => '',
             'isi'           => 'required',
             'nama_kategori'   => 'required',
-            ]);
+        ]);
 
             $berita = Berita::find($berita->id);
             $berita->judul = $validateData['judul'];
@@ -162,9 +167,9 @@ class HomeController extends Controller
                 if(File::exists($oldImagePath)){
                     File::delete($oldImagePath);
                 }
-                $extFile = $request->gambar->getClientOriginalExtension();
-                $namFile = 'berita-'.$validateData['judul'].".".$extFile;
-                $newImagePath = $validateData['gambar']->move('image',$namFile);
+                    $namFile = $berita->gambar;
+                    $newImagePath = $validateData['gambar']->move('image',$namFile);
+
 
                 $berita->gambar = $newImagePath;
             }
@@ -175,9 +180,10 @@ class HomeController extends Controller
     }
     public function destroy_berita(Berita $berita)
     {
-        $oldImagePath = 'image/'.$berita->gambar;
-                if(File::exists($oldImagePath)){
-                    File::delete($oldImagePath);
+        $berita = Berita::find($berita->id);
+        $oldImagePath = $berita->gambar;
+            if(File::exists($oldImagePath)){
+                File::delete($oldImagePath);
         }
         $berita->delete();
         return redirect()->route('berita')->with('pesan',"Hapus data $berita->judul berhasil");
@@ -200,7 +206,7 @@ class HomeController extends Controller
             'nama_kategori'   => 'required',
             ]);
             $extFile = $request->gambar->getClientOriginalExtension();
-            $namFile = 'gallery-'.$validateData['judul'].".".$extFile;
+            $namFile = 'gallery-'.time().rand(100,999).".".$extFile;
             $path = $request->gambar->move('image',$namFile);
 
             $gallery = new Gallery();
@@ -214,20 +220,46 @@ class HomeController extends Controller
     }
     public function edit_gallery(Gallery $gallery)
     {
-        return view('admin.gallery_edit',['gallery' => $gallery]);
+        $kategori = Kategori::where('id_menu', '=', 'Gallery')->get();
+        return view('admin.gallery_edit',['gallery' => $gallery], ['kategori' => $kategori]);
     }
     public function update_gallery(Request $request, Gallery $gallery)
     {
         $validateData = $request->validate([
-            'name'         => 'required', 'string', 'max:255',
-            'email'        => 'required', 'string', 'email', 'max:255', 'unique:users',
-            ]);
+            'judul'         => 'required', 'string', 'max:255',
+            'gambar'        => '',
+            'isi'           => 'required',
+            'nama_kategori'   => 'required',
+        ]);
 
-            Gallery::where('id',$gallery->id)->update($validateData);
+            $gallery = Gallery::find($gallery->id);
+            $gallery->judul = $validateData['judul'];
+            $gallery->isi = $validateData['isi'];
+            $gallery->nama_kategori = $validateData['nama_kategori'];
+
+            if($request->hasFile('gambar')){
+                $oldImagePath = 'image/'.$gallery->gambar;
+                if(File::exists($oldImagePath)){
+                    File::delete($oldImagePath);
+                }
+                    $namFile = $gallery->gambar;
+                    $newImagePath = $validateData['gambar']->move('image',$namFile);
+
+
+                $gallery->gambar = $newImagePath;
+            }
+
+            $gallery->save();
+
             return redirect()->route('gallery')->with('pesan',"Update data {$validateData['judul']} berhasil");
     }
     public function destroy_gallery(Gallery $gallery)
     {
+        $gallery = Gallery::find($gallery->id);
+        $oldImagePath = $gallery->gambar;
+            if(File::exists($oldImagePath)){
+                File::delete($oldImagePath);
+        }
         $gallery->delete();
         return redirect()->route('gallery')->with('pesan',"Hapus data $gallery->judul berhasil");
     }
@@ -249,7 +281,7 @@ class HomeController extends Controller
             'nama_kategori'   => 'required',
             ]);
             $extFile = $request->gambar->getClientOriginalExtension();
-            $namFile = 'about-'.$validateData['judul'].".".$extFile;
+            $namFile = 'about-'.time().rand(100,999).".".$extFile;
             $path = $request->gambar->move('image',$namFile);
 
             $about = new About();
@@ -263,20 +295,46 @@ class HomeController extends Controller
     }
     public function edit_about(About $about)
     {
-        return view('admin.about_edit',['about' => $about]);
+        $kategori = Kategori::where('id_menu', '=', 'About')->get();
+        return view('admin.about_edit',['about' => $about], ['kategori' => $kategori]);
     }
     public function update_about(Request $request, About $about)
     {
         $validateData = $request->validate([
             'judul'         => 'required', 'string', 'max:255',
-            'email'        => 'required', 'string', 'email', 'max:255', 'unique:users',
-            ]);
+            'gambar'        => '',
+            'isi'           => 'required',
+            'nama_kategori'   => 'required',
+        ]);
 
-            About::where('id',$about->id)->update($validateData);
+            $about = About::find($about->id);
+            $about->judul = $validateData['judul'];
+            $about->isi = $validateData['isi'];
+            $about->nama_kategori = $validateData['nama_kategori'];
+
+            if($request->hasFile('gambar')){
+                $oldImagePath = 'image/'.$about->gambar;
+                if(File::exists($oldImagePath)){
+                    File::delete($oldImagePath);
+                }
+                    $namFile = $about->gambar;
+                    $newImagePath = $validateData['gambar']->move('image',$namFile);
+
+
+                $about->gambar = $newImagePath;
+            }
+
+            $about->save();
+
             return redirect()->route('about')->with('pesan',"Update data {$validateData['judul']} berhasil");
     }
     public function destroy_about(About $about)
     {
+        $about = About::find($about->id);
+        $oldImagePath = $about->gambar;
+            if(File::exists($oldImagePath)){
+                File::delete($oldImagePath);
+        }
         $about->delete();
         return redirect()->route('about')->with('pesan',"Hapus data $about->judul berhasil");
     }

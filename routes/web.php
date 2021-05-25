@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
+
     return view('welcome');
 });
+//Route::get('/', [App\Http\Controllers\HomeController::class,'store_user'] )->name('users.store');
 
 Auth::routes();
 

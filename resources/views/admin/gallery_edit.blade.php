@@ -14,46 +14,52 @@
 
             <div class="container-fluid">
                 <div class="text-center p-4">
-                    <h1>Edit Kategori</h1>
+                    <h1>Edit Gallery</h1>
                 </div>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-body">
-                        <form action="{{ route('kategoris.update',['kategori' => $kategori->id]) }}" method="POST">
+                        <form action="{{ route('gallerys.update',['gallery' => $gallery->id]) }}" method="POST" enctype="multipart/form-data">
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
-                                <label for="nim">Nama Kategori</label>
-                                <input type="text" class="form-control @error('nama_kategori') is-invalid @enderror" id="nama_kategori" name="nama_kategori" value="{{ old('nama_kategori') ?? $kategori->nama_kategori}}">
-                                @error('nama_kategori')
+                                <label for="nim">Judul</label>
+                                <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" value="{{ old('judul') ?? $gallery->judul}}">
+                                @error('judul')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-
                             <div class="form-group">
-                                <label for="nama">Menu</label>
-                                <select class="form-control" name="id_menu" id="id_menu">
-                                    <option value="Berita"
-                                    {{ (old('id_menu') ?? $kategori->id_menu)==
-                                    'Berita' ? 'selected': '' }} >
-                                    Berita
-                                    </option>
-                                    <option value="Gallery"
-                                    {{ (old('id_menu') ?? $kategori->id_menu)==
-                                    'Gallery' ? 'selected': '' }} >
-                                    Gallery
-                                    </option>
-                                    <option value="About"
-                                    {{ (old('id_menu') ?? $kategori->id_menu)==
-                                    'About' ? 'selected': '' }} >
-                                    About
-                                    </option>
-                                </select>
-                                  @error('id_menu')
-                                    <div class="text-danger">{{ $message }}</div>
-                                  @enderror
-                            </div>
+                                <label for="nim">Gambar</label>
+                                <img src="{{ asset($gallery->gambar) }}" class="cover-img" style="width: 100px;">
+                                <input type="file" class="form-control-file  @error('gambar') is-invalid @enderror" id="gambar" name="gambar" value="{{ old('gambar') ?? $gallery->gambar}}">
 
+                                @error('judul')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="nim">Kategori</label>
+                                <select name="nama_kategori" id="nama_kategori" class="form-control @error('nama_kategori') is-invalid @enderror">
+                                    @forelse ($kategori as $kategoris)
+                                            <option value="{{$kategoris->nama_kategori}}"
+                                                {{ (old('nama_kategori') ?? $kategoris->nama_kategori)== $kategoris->nama_kategori ? 'selected': '' }}>
+                                                {{$kategoris->nama_kategori}}</option>
+                                        @empty
+                                        Tidak ada data...
+                                    @endforelse
+                                </select>
+                                @error('judul')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="nim">Isi</label>
+                                <textarea class="form-control" id="isi" rows="3" name="isi">{{ old('isi') ?? $gallery->isi}}</textarea>
+                                @error('isi')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <button type="submit" class="btn btn-primary mb-2">Edit</button>
                         </form>
                     </div>

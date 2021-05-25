@@ -38,6 +38,7 @@
                             <td>{{$berita->isi}}</td>
                             <td>{{$berita->nama_kategori}}</td>
                             <td>
+                                <a href="{{ route('beritas.edit',['berita'=>$berita->id]) }}"><i class="fas fa-edit"></i></a>
                                 <form action="{{route('beritas.destroy', $berita->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
