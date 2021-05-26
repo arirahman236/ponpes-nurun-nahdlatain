@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -17,7 +18,10 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [App\Http\Controllers\ProfileController::class, 'profil']);
 Route::get('/beranda', [App\Http\Controllers\ProfileController::class, 'beranda'])->name('profile.beranda');
-Route::get('/beritaa/{berita}', [App\Http\Controllers\HomeController::class,'asd'] )->name('tastas');
+Route::get('/beritaProfile/{berita}', [ProfileController::class,'berita'] )->name('beritaProfile');
+Route::get('/galleryProfile/{gallery}', [ProfileController::class,'gallery'] )->name('galleryProfile');
+Route::get('/aboutProfile/{about}', [ProfileController::class,'about'] )->name('aboutProfile');
+
 
 Auth::routes();
 

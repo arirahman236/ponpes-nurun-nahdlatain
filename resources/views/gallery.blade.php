@@ -14,25 +14,25 @@
 
             <div class="container-fluid">
                 <div class="text-center p-4">
-                    <h1>Edit Berita</h1>
+                    <h1>Edit Gallery</h1>
                 </div>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-body">
-                        <form action="{{ route('beritas.update',['berita' => $berita->id]) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('gallerys.update',['gallery' => $gallery->id]) }}" method="POST" enctype="multipart/form-data">
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
-                                <label for="nim">Judul Berita</label>
-                                <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" value="{{ old('judul') ?? $berita->judul}}">
+                                <label for="nim">Judul</label>
+                                <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" value="{{ old('judul') ?? $gallery->judul}}">
                                 @error('judul')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="nim">Gambar</label>
-                                <img src="{{ asset($berita->gambar) }}" class="cover-img" style="width: 100px;">
-                                <input type="file" class="form-control-file  @error('gambar') is-invalid @enderror" id="gambar" name="gambar" value="{{ old('gambar') ?? $berita->gambar}}">
+                                <img src="{{ asset($gallery->gambar) }}" class="cover-img" style="width: 100px;">
+                                <input type="file" class="form-control-file  @error('gambar') is-invalid @enderror" id="gambar" name="gambar" value="{{ old('gambar') ?? $gallery->gambar}}">
 
                                 @error('judul')
                                     <div class="text-danger">{{ $message }}</div>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="nim">Isi</label>
-                                <textarea class="form-control" id="isi" rows="3" name="isi">{{ old('isi') ?? $berita->isi}}</textarea>
+                                <textarea class="form-control" id="isi" rows="3" name="isi">{{ old('isi') ?? $gallery->isi}}</textarea>
                                 @error('isi')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror

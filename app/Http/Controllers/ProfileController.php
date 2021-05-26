@@ -1,13 +1,18 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
 use App\Models\Kategori;
+use App\Models\User;
 use App\Models\Berita;
 use App\Models\Gallery;
 use App\Models\About;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -18,8 +23,9 @@ class ProfileController extends Controller
         $about = Kategori::where('id_menu', '=', 'About')->get();
         return view('welcome', ['berita' => $berita, 'gallery' => $gallery, 'about' => $about]);
     }
-    public function asd($berita)
+    public function berita($berita)
     {
+
         return view('berita',['berita' => $berita]);
     }
 }
