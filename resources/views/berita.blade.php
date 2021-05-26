@@ -19,7 +19,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-body">
-                        <form action="{{ route('beritas.update',['berita' => $berita->id]) }}" method="POST" enctype="multipart/form-data">
+
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
@@ -61,7 +61,7 @@
                                 @enderror
                             </div>
                             <button type="submit" class="btn btn-primary mb-2">Edit</button>
-                        </form>
+
                     </div>
                 </div>
             </div>

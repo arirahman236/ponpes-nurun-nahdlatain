@@ -48,7 +48,7 @@
                 <li class="drop-down"><a href="">Berita</a>
                     <ul>
                     @forelse ($berita as $beritas)
-                    <li><a href="{{ route('tastas',['berita'=>$beritas->nama_kategori]) }}">{{$beritas->nama_kategori}}</a></li>
+                    <li><a href="{{ route('beritaProfile',['berita'=>$beritas->nama_kategori]) }}">{{$beritas->nama_kategori}}</a></li>
                         @empty
                         Tidak ada data...
                     @endforelse

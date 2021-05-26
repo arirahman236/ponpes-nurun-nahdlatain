@@ -25,7 +25,7 @@ class ProfileController extends Controller
     }
     public function berita($berita)
     {
-
-        return view('berita',['berita' => $berita]);
+        $beritas = Berita::where('id_menu', '=', $berita)->get();
+        return view('berita',['berita' => $beritas]);
     }
 }

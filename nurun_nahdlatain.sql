@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Bulan Mei 2021 pada 12.47
+-- Waktu pembuatan: 26 Bulan Mei 2021 pada 07.40
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -32,7 +32,7 @@ CREATE TABLE `abouts` (
   `judul` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gambar` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `isi` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_kategori` int(11) NOT NULL,
+  `nama_kategori` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -48,10 +48,17 @@ CREATE TABLE `beritas` (
   `judul` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gambar` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `isi` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_kategori` int(11) NOT NULL,
+  `nama_kategori` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `beritas`
+--
+
+INSERT INTO `beritas` (`id`, `judul`, `gambar`, `isi`, `nama_kategori`, `created_at`, `updated_at`) VALUES
+(17, 'coba', 'image\\berita-1621859663365.jpeg', 'asdsad', 'Pengumuman', '2021-05-24 05:34:23', '2021-05-24 05:34:23');
 
 -- --------------------------------------------------------
 
@@ -72,15 +79,15 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gallerys`
+-- Struktur dari tabel `galleries`
 --
 
-CREATE TABLE `gallerys` (
+CREATE TABLE `galleries` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `id_kategori` int(11) NOT NULL,
   `judul` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gambar` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `isi` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_kategori` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -104,7 +111,10 @@ CREATE TABLE `kategoris` (
 --
 
 INSERT INTO `kategoris` (`id`, `nama_kategori`, `id_menu`, `created_at`, `updated_at`) VALUES
-(2, 'Pengumuman', 'Berita', '2021-05-11 01:08:24', '2021-05-11 02:42:42');
+(2, 'Pengumuman', 'Berita', '2021-05-11 01:08:24', '2021-05-11 02:42:42'),
+(3, 'Kegiatan Pondok', 'Gallery', '2021-05-18 18:10:13', '2021-05-18 18:10:13'),
+(4, 'Contact', 'About', '2021-05-18 18:10:42', '2021-05-18 18:10:42'),
+(5, 'Siswa Berprestasi', 'Berita', '2021-05-18 22:28:34', '2021-05-18 22:28:34');
 
 -- --------------------------------------------------------
 
@@ -181,7 +191,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `level`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Fahri ari rahman', 'arirahman236@gmail.com', NULL, 'admin', '$2y$10$soSnBBLXHbLJ4rrrh9NGQOlOz0lc1gko7ArWDUc4kfBKjkJXrtirq', NULL, '2021-05-11 00:01:51', '2021-05-11 00:01:51'),
-(2, 'Alif Fahreza', 'aliffahreza023@gmail.com', NULL, 'user', '$2y$10$fQzuI5znyGx8Thp42V4qLuOxaKuS.h7KU9sia/PjBnHu3Wl9LQm1e', NULL, '2021-05-11 00:05:43', '2021-05-11 00:05:43');
+(2, 'Alif Fahreza Alrafi', 'aliffahreza023@gmail.com', NULL, 'user', '$2y$10$fQzuI5znyGx8Thp42V4qLuOxaKuS.h7KU9sia/PjBnHu3Wl9LQm1e', NULL, '2021-05-11 00:05:43', '2021-05-11 21:22:59');
 
 --
 -- Indexes for dumped tables
@@ -207,9 +217,9 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indeks untuk tabel `gallerys`
+-- Indeks untuk tabel `galleries`
 --
-ALTER TABLE `gallerys`
+ALTER TABLE `galleries`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -251,13 +261,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `abouts`
 --
 ALTER TABLE `abouts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `beritas`
 --
 ALTER TABLE `beritas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -266,16 +276,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `gallerys`
+-- AUTO_INCREMENT untuk tabel `galleries`
 --
-ALTER TABLE `gallerys`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `galleries`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategoris`
 --
 ALTER TABLE `kategoris`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `menus`
@@ -293,7 +303,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
