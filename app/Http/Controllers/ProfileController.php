@@ -18,14 +18,51 @@ class ProfileController extends Controller
 {
     public function profil()
     {
-        $berita = Kategori::where('id_menu', '=', 'Berita')->get();
+        $beritaa = Kategori::where('id_menu', '=', 'Berita')->get();
         $gallery = Kategori::where('id_menu', '=', 'Gallery')->get();
         $about = Kategori::where('id_menu', '=', 'About')->get();
-        return view('welcome', ['berita' => $berita, 'gallery' => $gallery, 'about' => $about]);
+        return view('welcome', ['beritaa' => $beritaa, 'menugallery' => $gallery, 'about' => $about]);
     }
+
     public function berita($berita)
     {
-        $beritas = Berita::where('id_menu', '=', $berita)->get();
-        return view('berita',['berita' => $beritas]);
+        $beritas = Berita::where('nama_kategori', '=', $berita)->get();
+        $beritaa = Kategori::where('id_menu', '=', 'Berita')->get();
+        $menugallery = Kategori::where('id_menu', '=', 'Gallery')->get();
+        $about = Kategori::where('id_menu', '=', 'About')->get();
+        return view('berita',['beritaProfile' => $beritas,'beritaa' => $beritaa, 'menugallery' => $menugallery, 'about' => $about]);
+    }
+    public function berita_detail(Berita $berita)
+    {
+        $beritaa = Kategori::where('id_menu', '=', 'Berita')->get();
+        $menugallery = Kategori::where('id_menu', '=', 'Gallery')->get();
+        $about = Kategori::where('id_menu', '=', 'About')->get();
+        return view('berita_detail',['berita' => $berita, 'beritaa' => $beritaa, 'menugallery' => $menugallery, 'about' => $about]);
+    }
+
+    public function gallery($gallery)
+    {
+        $gallerys = Gallery::where('nama_kategori', '=', $gallery)->get();
+        $beritaa = Kategori::where('id_menu', '=', 'Berita')->get();
+        $menugallery = Kategori::where('id_menu', '=', 'Gallery')->get();
+        $about = Kategori::where('id_menu', '=', 'About')->get();
+        //dump($gallery);
+        return view('gallery',['galleryProfile' => $gallerys,'beritaa' => $beritaa, 'menugallery' => $menugallery, 'about' => $about]);
+    }
+    public function gallery_detail(Gallery $gallery)
+    {
+        $beritaa = Kategori::where('id_menu', '=', 'Berita')->get();
+        $menugallery = Kategori::where('id_menu', '=', 'Gallery')->get();
+        $about = Kategori::where('id_menu', '=', 'About')->get();
+        return view('gallery_detail',['gallery' => $gallery, 'beritaa' => $beritaa, 'menugallery' => $menugallery, 'about' => $about]);
+    }
+
+    public function about()
+    {
+        $abouts = About::find(1);
+        $beritaa = Kategori::where('id_menu', '=', 'Berita')->get();
+        $menugallery = Kategori::where('id_menu', '=', 'Gallery')->get();
+        $about = Kategori::where('id_menu', '=', 'About')->get();
+        return view('about',['aboutProfile' => $abouts,'beritaa' => $beritaa, 'menugallery' => $menugallery, 'about' => $about]);
     }
 }

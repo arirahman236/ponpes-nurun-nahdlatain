@@ -16,11 +16,13 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', [App\Http\Controllers\ProfileController::class, 'profil']);
+Route::get('/', [App\Http\Controllers\ProfileController::class, 'profil'])->name('profile');
 Route::get('/beranda', [App\Http\Controllers\ProfileController::class, 'beranda'])->name('profile.beranda');
 Route::get('/beritaProfile/{berita}', [ProfileController::class,'berita'] )->name('beritaProfile');
+Route::get('/beritaProfile/{berita}/detail', [ProfileController::class,'berita_detail'] )->name('beritaProfileDetail');
 Route::get('/galleryProfile/{gallery}', [ProfileController::class,'gallery'] )->name('galleryProfile');
-Route::get('/aboutProfile/{about}', [ProfileController::class,'about'] )->name('aboutProfile');
+Route::get('/galleryProfile/{gallery}/detail', [ProfileController::class,'gallery_detail'] )->name('galleryProfileDetail');
+Route::get('/aboutProfile', [ProfileController::class,'about'] )->name('aboutProfile');
 
 
 Auth::routes();
@@ -65,7 +67,7 @@ Route::patch('/gallery/{gallery}', [App\Http\Controllers\HomeController::class,'
 Route::delete('/gallery/{gallery}', [App\Http\Controllers\HomeController::class,'destroy_gallery'] )->name('gallerys.destroy');
 
 //about
-Route::post('/about', [App\Http\Controllers\HomeController::class,'store_about'] )->name('abouts.store');
+Route::get('/about', [App\Http\Controllers\HomeController::class,'about'] )->name('about');
 Route::get('/about/{about}/edit', [App\Http\Controllers\HomeController::class,'edit_about'] )->name('abouts.edit');
 Route::patch('/about/{about}', [App\Http\Controllers\HomeController::class,'update_about'] )->name('abouts.update');
 Route::delete('/about/{about}', [App\Http\Controllers\HomeController::class,'destroy_about'] )->name('abouts.destroy');

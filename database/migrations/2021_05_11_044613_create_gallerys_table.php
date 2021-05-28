@@ -13,12 +13,12 @@ class CreateGallerysTable extends Migration
      */
     public function up()
     {
-        Schema::create('gallerys', function (Blueprint $table) {
+        Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_kategori');
             $table->char('judul');
             $table->char('gambar');
             $table->text('isi');
+            $table->char('nama_kategori');
             $table->timestamps();
         });
     }

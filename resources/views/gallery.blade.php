@@ -2,73 +2,35 @@
 
     @section('content')
     @parent
-      <div id="wrapper">
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-          <!-- Main Content -->
-          <div id="content">
-
-            <!-- Begin Page Content -->
-
-            <div class="container-fluid">
-                <div class="text-center p-4">
-                    <h1>Edit Gallery</h1>
-                </div>
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-body">
-                        <form action="{{ route('gallerys.update',['gallery' => $gallery->id]) }}" method="POST" enctype="multipart/form-data">
-                            @method('PATCH')
-                            @csrf
-                            <div class="form-group">
-                                <label for="nim">Judul</label>
-                                <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" value="{{ old('judul') ?? $gallery->judul}}">
-                                @error('judul')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="nim">Gambar</label>
-                                <img src="{{ asset($gallery->gambar) }}" class="cover-img" style="width: 100px;">
-                                <input type="file" class="form-control-file  @error('gambar') is-invalid @enderror" id="gambar" name="gambar" value="{{ old('gambar') ?? $gallery->gambar}}">
-
-                                @error('judul')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="nim">Kategori</label>
-                                <select name="nama_kategori" id="nama_kategori" class="form-control @error('nama_kategori') is-invalid @enderror">
-                                    @forelse ($kategori as $kategoris)
-                                            <option value="{{$kategoris->nama_kategori}}"
-                                                {{ (old('nama_kategori') ?? $kategoris->nama_kategori)== $kategoris->nama_kategori ? 'selected': '' }}>
-                                                {{$kategoris->nama_kategori}}</option>
-                                        @empty
-                                        Tidak ada data...
-                                    @endforelse
-                                </select>
-                                @error('judul')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="nim">Isi</label>
-                                <textarea class="form-control" id="isi" rows="3" name="isi">{{ old('isi') ?? $gallery->isi}}</textarea>
-                                @error('isi')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <button type="submit" class="btn btn-primary mb-2">Edit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- /.container-fluid -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+          <div class="section-title mt-5 pt-5">
+            <h2>Gallery</h2>
           </div>
-          <!-- End of Main Content -->
+          <div class="row portfolio-container">
+            @forelse ($galleryProfile as $gallery)
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+              <div class="portfolio-wrap">
+                <img src="{{ asset($gallery->gambar) }}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>{{$gallery->judul}}</h4>
+                  <p>Keterangan</p>
+                  <div class="portfolio-links">
+                    <a href="{{ asset($gallery->gambar) }}" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
+                    <a href="{{ route('galleryProfileDetail',['gallery'=>$gallery->id]) }}" title="More Details"><i class="bx bx-link"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-info">
+                <h4><a href="{{ route('galleryProfileDetail',['gallery'=>$gallery->id]) }}">{{$gallery->judul}}</a></h4>
+                <p>{{Str::limit($gallery->isi, 20, '(...)')}}</p>
+              </div>
+            </div>
+            @empty
+                <td colspan="6" class="text-center">Tidak ada data...</td>
+            @endforelse
+          </div>
+
         </div>
-        <!-- End of Content Wrapper -->
-      </div>
+    </section>
     @endsection

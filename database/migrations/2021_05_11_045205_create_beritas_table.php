@@ -18,7 +18,7 @@ class CreateBeritasTable extends Migration
             $table->char('judul');
             $table->char('gambar');
             $table->text('isi');
-            $table->integer('id_kategori');
+            $table->char('nama_kategori');
             $table->timestamps();
         });
     }

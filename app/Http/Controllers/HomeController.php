@@ -267,9 +267,8 @@ class HomeController extends Controller
     //about
     public function about()
     {
-        $about = About::all();
-        $kategori = Kategori::where('id_menu', '=', 'About')->get();
-        return view('admin.admin_about',['about' => $about], ['kategori' => $kategori]);
+        $about = About::find(1);
+        return view('admin.admin_about',['about' => $about]);
     }
     public function store_about(Request $request)
     {
@@ -301,29 +300,21 @@ class HomeController extends Controller
     public function update_about(Request $request, About $about)
     {
         $validateData = $request->validate([
-            'judul'         => 'required', 'string', 'max:255',
-            'gambar'        => '',
-            'isi'           => 'required',
-            'nama_kategori'   => 'required',
+            'judul'       => 'required', 'string', 'max:255',
+            'isi'         => 'required',
+            'isi_bawah'   => 'required',
+            'lokasi'      => 'required',
+            'email'       => 'required',
+            'telp'        => 'required',
         ]);
 
             $about = About::find($about->id);
             $about->judul = $validateData['judul'];
             $about->isi = $validateData['isi'];
-            $about->nama_kategori = $validateData['nama_kategori'];
-
-            if($request->hasFile('gambar')){
-                $oldImagePath = 'image/'.$about->gambar;
-                if(File::exists($oldImagePath)){
-                    File::delete($oldImagePath);
-                }
-                    $namFile = $about->gambar;
-                    $newImagePath = $validateData['gambar']->move('image',$namFile);
-
-
-                $about->gambar = $newImagePath;
-            }
-
+            $about->isi_bawah = $validateData['isi_bawah'];
+            $about->lokasi = $validateData['lokasi'];
+            $about->email = $validateData['email'];
+            $about->telp = $validateData['telp'];
             $about->save();
 
             return redirect()->route('about')->with('pesan',"Update data {$validateData['judul']} berhasil");

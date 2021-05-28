@@ -44,34 +44,27 @@
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-                <li class="active"><a href="index">Beranda</a></li>
-                <li class="drop-down"><a href="">Berita</a>
+                <li class="active"><a href="{{ route('profile') }}">Beranda</a></li>
+                <li class="drop-down"><a href="#">Berita</a>
                     <ul>
-                    @forelse ($berita as $beritas)
-                    <li><a href="{{ route('beritaProfile',['berita'=>$beritas->nama_kategori]) }}">{{$beritas->nama_kategori}}</a></li>
+                    @forelse ($beritaa as $beritas)
+                    <li><a href="{{ route('beritaProfile',$beritas->nama_kategori) }}">{{$beritas->nama_kategori}}</a></li>
                         @empty
                         Tidak ada data...
                     @endforelse
                     </ul>
                 </li>
+
                 <li class="drop-down"><a href="">Gallery</a>
                     <ul>
-                    @forelse ($gallery as $gallerys)
-                    <li><a href="{{$gallerys->nama_kategori}}">{{$gallerys->nama_kategori}}</a></li>
-                        @empty
-                        Tidak ada data...
-                    @endforelse
+
+                    @foreach ( $menugallery as $gallerys )
+
+                        <li><a href="{{ route('galleryProfile',$gallerys->nama_kategori) }}">{{$gallerys->nama_kategori}}</a></li>
+                    @endforeach
                     </ul>
                 </li>
-                <li class="drop-down"><a href="">About</a>
-                    <ul>
-                    @forelse ($about as $abouts)
-                    <li><a href="{{$abouts->nama_kategori}}">{{$abouts->nama_kategori}}</a></li>
-                        @empty
-                        Tidak ada data...
-                    @endforelse
-                    </ul>
-                </li>
+                <li class=""><a href="{{ route('aboutProfile') }}">About</a></li>
                 {{-- <li class="drop-down"><a href="">Yayasan</a>
                     <ul>
                         <li><a href="#foto">Islamiyah Syafi'iyah</a></li>
@@ -92,7 +85,6 @@
         </nav><!-- .nav-menu -->
     </div>
     </header><!-- End Header -->
-
     @section('content')
     @show
 

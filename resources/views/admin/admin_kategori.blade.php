@@ -88,10 +88,10 @@
                                     {{ old('id_menu')=='Gallery' ? 'selected': '' }} >
                                     Gallery
                                     </option>
-                                    <option value="About"
+                                    {{-- <option value="About"
                                     {{ old('id_menu')=='About' ? 'selected': '' }} >
                                     About
-                                    </option>
+                                    </option> --}}
                                 </select>
                                 @error('id_menu')
                                     <div class="text-danger">{{ $message }}</div>
