@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="img/logo.png" type="image/x-icon"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Sistem Informasi Pondok Pesantren Nurun Nahdlatain') }}</title>
+    <title>Sistem Informasi Pondok Pesantren Nurun Nahdlatain</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -24,8 +24,8 @@
     <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
         <div class="container d-flex">
         <div class="contact-info mr-auto">
-            <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">contact@example.com</a>
-            <i class="icofont-phone"></i> +1 5589 55488 55
+            <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">{{ $abo->email}}</a>
+            <i class="icofont-phone"></i> {{ $abo->telp}}
         </div>
         <div class="social-links">
             <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
@@ -40,7 +40,7 @@
     <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-        <h3 class="logo mr-auto"><a href="index">Pondok Pesantren Nurun Nahdlatain</a></h3>
+        <h3 class="logo mr-auto"><a href="{{ route('profile') }}">Pondok Pesantren Nurun Nahdlatain</a></h3>
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
@@ -72,11 +72,12 @@
                     </ul>
                 </li> --}}
                 <li>
-                    <form type="get" action="/search/" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                    <form type="get" action="{{route('search')}}" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                        @csrf
                         <div class="input-group">
-                            <input class="form-control" type="search" id="tbName" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                            <input class="form-control" name="search" type="search" id="tbName" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
                             <div class="input-group-append">
-                                <button class="btn btn-light" type="button" id="search"><a class="fas fa-search">Search</a></button>
+                                <button class="btn btn-light" type="submit" id="search"><a class="fas fa-search">Search</a></button>
                             </div>
                         </div>
                     </form>

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 
 
 /*
@@ -23,9 +25,14 @@ Route::get('/beritaProfile/{berita}/detail', [ProfileController::class,'berita_d
 Route::get('/galleryProfile/{gallery}', [ProfileController::class,'gallery'] )->name('galleryProfile');
 Route::get('/galleryProfile/{gallery}/detail', [ProfileController::class,'gallery_detail'] )->name('galleryProfileDetail');
 Route::get('/aboutProfile', [ProfileController::class,'about'] )->name('aboutProfile');
+Route::get('/search', [ProfileController::class,'search'] )->name('search');
 
 
 Auth::routes();
+
+//login
+Route::get('/admin', [LoginController::class,'login'] )->name('admin');
+Route::post('/proses-login', [LoginController::class,'loginProses'])->name('loginProses');
 
 Route::middleware(['auth','ceklevel:admin'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');

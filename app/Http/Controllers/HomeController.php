@@ -19,12 +19,10 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
     public function profil()
     {
         return view('admin.admin_home');
     }
-
     public function home()
     {
         return view('admin.admin_home');
@@ -89,7 +87,7 @@ class HomeController extends Controller
             $user = new User();
             $user->name = $validateData['name'];
             $user->email = $validateData['email'];
-            $user->password = Hash::make($validateData['email']);
+            $user->password = Hash::make($validateData['password']);
             $user->save();
 
             return redirect()->route('user')->with('pesan',"Penambahan data {$validateData['name']} berhasil");
@@ -328,9 +326,5 @@ class HomeController extends Controller
         }
         $about->delete();
         return redirect()->route('about')->with('pesan',"Hapus data $about->judul berhasil");
-    }
-    public function asd($berita)
-    {
-        return view('berita',['berita' => $berita]);
     }
 }

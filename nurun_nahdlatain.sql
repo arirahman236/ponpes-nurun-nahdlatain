@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Bulan Mei 2021 pada 07.40
+-- Waktu pembuatan: 29 Bulan Mei 2021 pada 11.10
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -30,12 +30,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `abouts` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `judul` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gambar` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `isi` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_kategori` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `isi_bawah` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lokasi` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telp` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `abouts`
+--
+
+INSERT INTO `abouts` (`id`, `judul`, `isi`, `isi_bawah`, `lokasi`, `email`, `telp`, `created_at`, `updated_at`) VALUES
+(1, 'Voluptatem dignissimos.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\n\r\n Ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\n Duis aute irure dolor in reprehenderit in voluptate velit.\r\n Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.\r\nUllamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\n\r\n Ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\n Duis aute irure dolor in reprehenderit in voluptate velit.\r\n Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.\r\nUllamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.', 'Jl. Bantaran', 'nurunnadlatain@example.com', '+1 5589 55488 55', NULL, '2021-05-29 02:08:55');
 
 -- --------------------------------------------------------
 
@@ -48,7 +57,7 @@ CREATE TABLE `beritas` (
   `judul` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gambar` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `isi` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_kategori` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_kategori` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -58,7 +67,9 @@ CREATE TABLE `beritas` (
 --
 
 INSERT INTO `beritas` (`id`, `judul`, `gambar`, `isi`, `nama_kategori`, `created_at`, `updated_at`) VALUES
-(17, 'coba', 'image\\berita-1621859663365.jpeg', 'asdsad', 'Pengumuman', '2021-05-24 05:34:23', '2021-05-24 05:34:23');
+(1, 'coba', 'image\\berita-1622192570258.jpeg', 'Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident\r\nVoluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident\r\nVoluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident\r\nVoluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident', 'Pengumuman', '2021-05-28 02:02:50', '2021-05-29 01:00:19'),
+(2, 'cobaa', 'image\\berita-1622192602719.jpeg', 'asdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjkl', 'Pengumuman', '2021-05-28 02:03:22', '2021-05-29 01:25:46'),
+(3, 'Voluptatem dignissimos.', 'image\\berita-1622278119112.jpeg', 'Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident Voluptatum deleniti atque corrupti quos dolores et quas molestiasVoluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident Voluptatum deleniti atque corrupti quos dolores et quas molestias', 'Siswa Berprestasi', '2021-05-29 01:48:39', '2021-05-29 01:48:39');
 
 -- --------------------------------------------------------
 
@@ -87,10 +98,17 @@ CREATE TABLE `galleries` (
   `judul` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gambar` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `isi` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_kategori` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_kategori` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `galleries`
+--
+
+INSERT INTO `galleries` (`id`, `judul`, `gambar`, `isi`, `nama_kategori`, `created_at`, `updated_at`) VALUES
+(1, 'Alvian peraih medali', 'image\\gallery-1622192625450.jpeg', 'zxcvbnm', 'Contact', '2021-05-28 02:03:45', '2021-05-28 02:03:45');
 
 -- --------------------------------------------------------
 
@@ -111,10 +129,9 @@ CREATE TABLE `kategoris` (
 --
 
 INSERT INTO `kategoris` (`id`, `nama_kategori`, `id_menu`, `created_at`, `updated_at`) VALUES
-(2, 'Pengumuman', 'Berita', '2021-05-11 01:08:24', '2021-05-11 02:42:42'),
-(3, 'Kegiatan Pondok', 'Gallery', '2021-05-18 18:10:13', '2021-05-18 18:10:13'),
-(4, 'Contact', 'About', '2021-05-18 18:10:42', '2021-05-18 18:10:42'),
-(5, 'Siswa Berprestasi', 'Berita', '2021-05-18 22:28:34', '2021-05-18 22:28:34');
+(1, 'Siswa Berprestasi', 'Berita', '2021-05-28 02:00:26', '2021-05-28 02:00:26'),
+(2, 'Contact', 'Gallery', '2021-05-28 02:00:48', '2021-05-28 02:00:48'),
+(3, 'Pengumuman', 'Berita', '2021-05-28 02:01:42', '2021-05-28 02:01:42');
 
 -- --------------------------------------------------------
 
@@ -178,7 +195,7 @@ CREATE TABLE `users` (
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `level` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
+  `level` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT 'user',
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -190,8 +207,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `level`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Fahri ari rahman', 'arirahman236@gmail.com', NULL, 'admin', '$2y$10$soSnBBLXHbLJ4rrrh9NGQOlOz0lc1gko7ArWDUc4kfBKjkJXrtirq', NULL, '2021-05-11 00:01:51', '2021-05-11 00:01:51'),
-(2, 'Alif Fahreza Alrafi', 'aliffahreza023@gmail.com', NULL, 'user', '$2y$10$fQzuI5znyGx8Thp42V4qLuOxaKuS.h7KU9sia/PjBnHu3Wl9LQm1e', NULL, '2021-05-11 00:05:43', '2021-05-11 21:22:59');
+(3, 'Fahri ari rahman', 'arirahman236@gmail.com', NULL, 'admin', '$2y$10$wIzbHnUaH8MRsOyIwq/dP.m/wVPP7xk8ZURL81MNufNU2ClSc8WWy', NULL, '2021-05-28 23:46:42', '2021-05-28 23:46:42'),
+(7, 'charis saida', 'charis.saida@gmail.com', NULL, 'user', '$2y$10$nponDqMJd.G0ytv9K1hcRuOf6IK2oAS8giS/vLITZgZidYLU8iLWC', NULL, '2021-05-29 00:18:38', '2021-05-29 00:18:38');
 
 --
 -- Indexes for dumped tables
@@ -261,13 +278,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `abouts`
 --
 ALTER TABLE `abouts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `beritas`
 --
 ALTER TABLE `beritas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -279,13 +296,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategoris`
 --
 ALTER TABLE `kategoris`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `menus`
@@ -303,7 +320,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

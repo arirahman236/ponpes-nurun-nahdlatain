@@ -38,6 +38,7 @@
                             <td>{{$gallery->isi}}</td>
                             <td>{{$gallery->nama_kategori}}</td>
                             <td>
+                                <a href="{{ route('gallerys.edit',['gallery'=>$gallery->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                 <form action="{{route('gallerys.destroy', $gallery->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')

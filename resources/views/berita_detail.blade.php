@@ -17,21 +17,22 @@
     </section>
     <section id="portfolio-details" class="portfolio-details">
         <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-12 col-md-6">
+                    <div class="portfolio-details-container">
+                        <div class="owl-carousel portfolio-details-carousel">
+                        <img src="{{ asset($berita->gambar) }}" class="img-fluid" alt="">
+                        </div>
+                    </div>
 
-          <div class="portfolio-details-container">
-
-            <div class="owl-carousel portfolio-details-carousel">
-              <img src="{{ asset($berita->gambar) }}" class="img-fluid" alt="">
+                    <div class="portfolio-description">
+                        <h2>{{ $berita->judul }}</h2>
+                        <p>
+                            {{ $berita->isi }}
+                        </p>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <div class="portfolio-description">
-            <h2>{{ $berita->judul }}</h2>
-            <p>
-                {{ $berita->isi }}
-            </p>
-          </div>
-
         </div>
       </section>
 @endsection

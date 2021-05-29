@@ -14,9 +14,9 @@
             <div class="carousel-item active" style="background-image: url(/img/slide/slide-1.jpg)">
             <div class="carousel-container">
                 <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Green</span></h2>
-                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Pondok Pesantren Nurun Nahdlatain Raha</span></h2>
+                <p class="animate__animated animate__fadeInUp">{{Str::limit($abo->isi, 200)}}</p>
+                <a href="{{ route('aboutProfile') }}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
                 </div>
             </div>
             </div>
@@ -27,7 +27,7 @@
                 <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
                 <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                <a href="{{ route('aboutProfile') }}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
                 </div>
             </div>
             </div>
@@ -38,7 +38,7 @@
                 <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
                 <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                <a href="{{ route('aboutProfile') }}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
                 </div>
             </div>
             </div>
@@ -66,19 +66,29 @@
                 <div class="row no-gutters">
                     <div class="col-lg-8 col-md-6">
                         <div class="icon-box">
-                        <div class="icon"><i class="icofont-computer"></i></div>
-                        <h4 class="title"><a href="">Berita</a></h4>
-                        <p class="description">
-                            Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
-                            Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
-                            Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
-                            Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
-                        </p>
+                        <div class="icon"><i class="icofont-listine-dots"></i></div>
+                        @forelse ($berita as $berita1)
+                            <img src="{{ asset($berita1->gambar) }}" class="img-fluid" alt="">
+                            <h4 class="title"><a href="">{{$berita1->judul}}</a></h4>
+                            <p class="description">
+                                {{ Str::limit($berita1->isi, 300) }}
+                            </p>
+                        @empty
+                            data tidak ada...
+                        @endforelse
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                        <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+                        <div class="icon-box">
+                        <div class="icon"><i class="icofont-ui-clip-board"></i></div>
+                        @forelse ($berita as $berita2)
+                            <h4 class="title"><a href="">{{$berita2->judul}}</a></h4>
+                            <h2>{{$berita2->created_at}}</h2>
+                            <p class="description">{{Str::limit($berita2->isi, 200)}}</p>
+                        @empty
+                            data tidak ada...
+                        @endforelse
+                        </div>
                     </div>
                 </div>
 
