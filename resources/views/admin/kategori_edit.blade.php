@@ -43,11 +43,11 @@
                                     'Gallery' ? 'selected': '' }} >
                                     Gallery
                                     </option>
-                                    <option value="About"
+                                    {{-- <option value="About"
                                     {{ (old('id_menu') ?? $kategori->id_menu)==
                                     'About' ? 'selected': '' }} >
                                     About
-                                    </option>
+                                    </option> --}}
                                 </select>
                                   @error('id_menu')
                                     <div class="text-danger">{{ $message }}</div>

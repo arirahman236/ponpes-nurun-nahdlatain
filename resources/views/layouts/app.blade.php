@@ -28,11 +28,9 @@
             <i class="icofont-phone"></i> {{ $abo->telp}}
         </div>
         <div class="social-links">
-            <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-            <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-            <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-            <a href="#" class="skype"><i class="icofont-skype"></i></a>
-            <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+            <a href="{{ $abo->twitter }}" class="twitter"><i class="icofont-twitter"></i></a>
+            <a href="{{ $abo->facebook }}" class="facebook"><i class="icofont-facebook"></i></a>
+            <a href="{{ $abo->instagram }}" class="instagram"><i class="icofont-instagram"></i></a>
         </div>
         </div>
     </div>
@@ -44,7 +42,7 @@
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-                <li class="active"><a href="{{ route('profile') }}">Beranda</a></li>
+                <li class=""><a href="{{ route('profile') }}">Beranda</a></li>
                 <li class="drop-down"><a href="#">Berita</a>
                     <ul>
                     @forelse ($beritaa as $beritas)
@@ -93,13 +91,11 @@
     <footer id="footer">
         <div class="container">
         <h3>Pondok Pesantren Nurun Nahdlatain Raha</h3>
-        <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+        <p>{{Str::limit($abo->isi_bawah, 200)}}</p>
         <div class="social-links">
-            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            <a href="{{ $abo->twitter }}" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="{{ $abo->facebook }}" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="{{ $abo->instagram }}" class="instagram"><i class="bx bxl-instagram"></i></a>
         </div>
         <div class="copyright">
             &copy; Copyright <strong><span>2021 Pondok Pesantren Nurun Nahdlatain</span></strong>. All Rights Reserved

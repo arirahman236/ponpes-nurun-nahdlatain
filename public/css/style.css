@@ -666,7 +666,7 @@ section {
     font-size: 15px;
   }
 
-  .featured-services .icon-box:hover .title a {
+  .featured-services .icon-box .title:hover a {
     color: #5cb874;
   }
 
@@ -1421,7 +1421,7 @@ section {
     padding-top: 40px;
 }
 
-.portfolio-details .portfolio-details-carousel img {
+.portfolio-details img {
       height: 500px;
       width: 900px;
 }

@@ -35,7 +35,7 @@
                             <th>{{$loop->iteration}}</th>
                             <td><a href="{{ route('gallerys.edit',['gallery'=>$gallery->id]) }}">{{$gallery->judul}}</a></td>
                             <td><img src="{{ asset($gallery->gambar) }}" class="cover-img" style="width: 100px;"></td>
-                            <td>{{$gallery->isi}}</td>
+                            <td>{{Str::limit($gallery->isi, 50)}}</td>
                             <td>{{$gallery->nama_kategori}}</td>
                             <td>
                                 <a href="{{ route('gallerys.edit',['gallery'=>$gallery->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>

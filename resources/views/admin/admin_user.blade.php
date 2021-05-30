@@ -42,6 +42,7 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->level}}</td>
                             <td>
+                                <a href="{{ route('users.edit',['user'=>$user->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                 <form action="{{route('users.destroy', $user->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')

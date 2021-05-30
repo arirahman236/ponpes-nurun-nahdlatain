@@ -64,6 +64,28 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <label for="nim">Sosial Media</label>
+                            <div class="form-group">
+                                <label for="nim">twitter</label>
+                                <input type="text" class="form-control @error('twitter') is-invalid @enderror" id="twitter" name="twitter" value="{{ old('twitter') ?? $about->twitter}}">
+                                @error('twitter')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="nim">facebook</label>
+                                <input type="text" class="form-control @error('facebook') is-invalid @enderror" id="facebook" name="facebook" value="{{ old('facebook') ?? $about->facebook}}">
+                                @error('facebook')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="nim">instagram</label>
+                                <input type="text" class="form-control @error('instagram') is-invalid @enderror" id="instagram" name="instagram" value="{{ old('instagram') ?? $about->instagram}}">
+                                @error('instagram')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <button type="submit" class="btn btn-primary mb-2">Edit</button>
                         </form>
                     </div>

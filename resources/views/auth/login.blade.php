@@ -61,7 +61,7 @@
                 @enderror
             </div>
           </div>
-          <div class="form-group row">
+          {{-- <div class="form-group row">
             <div class="col-md-6 offset-md-4">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -71,17 +71,17 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </div> --}}
           <div class="form-group form-action-d-flex mb-3">
                 <button type="submit" name="submit" value="login" class="btn btn-primary col-md-12 float-right mt-3 mt-sm-0 fw-bold" style="background-color: '#372eb3'">{{ __('Login') }}</button>
           </div>
-          <div class="login-account">
+          {{-- <div class="login-account">
             @if (Route::has('password.request'))
                 <a class="btn btn-link" href="{{ route('password.request') }}">
                     {{ __('Forgot Your Password?') }}
                 </a>
             @endif
-          </div>
+          </div> --}}
           <br>
           <div class="login-account">
             <span class="msg">&copy; Pondok Pesantren Nurun Nahdlatain - 2021</span>

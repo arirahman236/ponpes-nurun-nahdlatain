@@ -8,7 +8,7 @@
           <div class="d-flex justify-content-between align-items-center">
             <h2>Gallery Detail</h2>
             <ol>
-              <li><a href="index.html">Gallery</a></li>
+              <li>Gallery</li>
               <li>Gallery Detail</li>
             </ol>
           </div>
@@ -20,9 +20,9 @@
 
           <div class="portfolio-details-container">
 
-            <div class="owl-carousel portfolio-details-carousel">
+
               <img src="{{ asset($gallery->gambar) }}" class="img-fluid" alt="">
-            </div>
+
           </div>
 
           <div class="portfolio-description">

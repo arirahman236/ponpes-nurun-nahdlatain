@@ -304,6 +304,9 @@ class HomeController extends Controller
             'lokasi'      => 'required',
             'email'       => 'required',
             'telp'        => 'required',
+            'twitter'     => 'required',
+            'facebook'    => 'required',
+            'instagram'   => 'required',
         ]);
 
             $about = About::find($about->id);
@@ -313,6 +316,9 @@ class HomeController extends Controller
             $about->lokasi = $validateData['lokasi'];
             $about->email = $validateData['email'];
             $about->telp = $validateData['telp'];
+            $about->twitter = $validateData['twitter'];
+            $about->facebook = $validateData['facebook'];
+            $about->instagram = $validateData['instagram'];
             $about->save();
 
             return redirect()->route('about')->with('pesan',"Update data {$validateData['judul']} berhasil");

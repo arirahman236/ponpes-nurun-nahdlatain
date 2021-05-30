@@ -39,6 +39,7 @@
                             <td><a href="{{ route('kategoris.edit',['kategori'=>$kategori->id]) }}">{{$kategori->nama_kategori}}</a></td>
                             <td>{{$kategori->id_menu}}</td>
                             <td>
+                                <a href="{{ route('kategoris.edit',['kategori'=>$kategori->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                 <form action="{{route('kategoris.destroy', $kategori->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')

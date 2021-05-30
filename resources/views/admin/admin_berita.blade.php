@@ -35,7 +35,7 @@
                             <th>{{$loop->iteration}}</th>
                             <td><a href="{{ route('beritas.edit',['berita'=>$berita->id]) }}">{{$berita->judul}}</a></td>
                             <td><img src="{{ asset($berita->gambar) }}" class="cover-img" style="width: 100px;"></td>
-                            <td>{{$berita->isi}}</td>
+                            <td>{{Str::limit($berita->isi, 50)}}</td>
                             <td>{{$berita->nama_kategori}}</td>
                             <td>
                                 <a href="{{ route('beritas.edit',['berita'=>$berita->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>

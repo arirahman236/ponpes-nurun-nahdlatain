@@ -8,7 +8,7 @@
           <div class="d-flex justify-content-between align-items-center">
             <h2>Berita Detail</h2>
             <ol>
-              <li><a href="index.html">Berita</a></li>
+              <li>Berita</li>
               <li>Berita Detail</li>
             </ol>
           </div>
@@ -20,9 +20,9 @@
             <div class="row no-gutters">
                 <div class="col-lg-12 col-md-6">
                     <div class="portfolio-details-container">
-                        <div class="owl-carousel portfolio-details-carousel">
+
                         <img src="{{ asset($berita->gambar) }}" class="img-fluid" alt="">
-                        </div>
+
                     </div>
 
                     <div class="portfolio-description">
