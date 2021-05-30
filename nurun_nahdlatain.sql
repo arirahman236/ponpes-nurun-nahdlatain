@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Bulan Mei 2021 pada 11.10
+-- Waktu pembuatan: 30 Bulan Mei 2021 pada 14.21
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -35,6 +35,9 @@ CREATE TABLE `abouts` (
   `lokasi` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telp` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `twitter` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `facebook` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `instagram` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -43,8 +46,8 @@ CREATE TABLE `abouts` (
 -- Dumping data untuk tabel `abouts`
 --
 
-INSERT INTO `abouts` (`id`, `judul`, `isi`, `isi_bawah`, `lokasi`, `email`, `telp`, `created_at`, `updated_at`) VALUES
-(1, 'Voluptatem dignissimos.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\n\r\n Ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\n Duis aute irure dolor in reprehenderit in voluptate velit.\r\n Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.\r\nUllamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\n\r\n Ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\n Duis aute irure dolor in reprehenderit in voluptate velit.\r\n Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.\r\nUllamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.', 'Jl. Bantaran', 'nurunnadlatain@example.com', '+1 5589 55488 55', NULL, '2021-05-29 02:08:55');
+INSERT INTO `abouts` (`id`, `judul`, `isi`, `isi_bawah`, `lokasi`, `email`, `telp`, `twitter`, `facebook`, `instagram`, `created_at`, `updated_at`) VALUES
+(1, 'Voluptatem dignissimos.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\n\r\n Ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\n Duis aute irure dolor in reprehenderit in voluptate velit.\r\n Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.\r\nUllamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\n\r\n Ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\n Duis aute irure dolor in reprehenderit in voluptate velit.\r\n Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.\r\nUllamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.', 'Jl. Bantaran', 'nurunnadlatain@example.com', '+1 5589 55488 55', 'https://www.instagram.com/charis.sm/?hl=id', 'https://www.instagram.com/arirahm_/?hl=id', 'https://www.instagram.com/alif.fadhil28/?hl=id', NULL, '2021-05-30 03:28:23');
 
 -- --------------------------------------------------------
 
@@ -67,9 +70,8 @@ CREATE TABLE `beritas` (
 --
 
 INSERT INTO `beritas` (`id`, `judul`, `gambar`, `isi`, `nama_kategori`, `created_at`, `updated_at`) VALUES
-(1, 'coba', 'image\\berita-1622192570258.jpeg', 'Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident\r\nVoluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident\r\nVoluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident\r\nVoluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident', 'Pengumuman', '2021-05-28 02:02:50', '2021-05-29 01:00:19'),
-(2, 'cobaa', 'image\\berita-1622192602719.jpeg', 'asdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjkl', 'Pengumuman', '2021-05-28 02:03:22', '2021-05-29 01:25:46'),
-(3, 'Voluptatem dignissimos.', 'image\\berita-1622278119112.jpeg', 'Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident Voluptatum deleniti atque corrupti quos dolores et quas molestiasVoluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident Voluptatum deleniti atque corrupti quos dolores et quas molestias', 'Siswa Berprestasi', '2021-05-29 01:48:39', '2021-05-29 01:48:39');
+(1, 'Kunjungan kepala pengadilan', 'image\\berita-1622192570258.jpeg', 'Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident\r\nVoluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident\r\nVoluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident\r\nVoluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident', 'Pengumuman', '2021-05-28 02:02:50', '2021-05-30 04:11:49'),
+(2, 'Juara lomba ceramah ramadhan', 'image\\berita-1622192602719.jpeg', 'asdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjklasdfghjkl', 'Siswa Berprestasi', '2021-05-28 02:03:22', '2021-05-30 04:12:12');
 
 -- --------------------------------------------------------
 
@@ -108,7 +110,7 @@ CREATE TABLE `galleries` (
 --
 
 INSERT INTO `galleries` (`id`, `judul`, `gambar`, `isi`, `nama_kategori`, `created_at`, `updated_at`) VALUES
-(1, 'Alvian peraih medali', 'image\\gallery-1622192625450.jpeg', 'zxcvbnm', 'Contact', '2021-05-28 02:03:45', '2021-05-28 02:03:45');
+(1, 'Sholat Tahajud', 'image\\gallery-1622192625450.jpeg', 'zxcvbnm', 'Kegiatan Pondok', '2021-05-28 02:03:45', '2021-05-30 04:00:54');
 
 -- --------------------------------------------------------
 
@@ -130,7 +132,7 @@ CREATE TABLE `kategoris` (
 
 INSERT INTO `kategoris` (`id`, `nama_kategori`, `id_menu`, `created_at`, `updated_at`) VALUES
 (1, 'Siswa Berprestasi', 'Berita', '2021-05-28 02:00:26', '2021-05-28 02:00:26'),
-(2, 'Contact', 'Gallery', '2021-05-28 02:00:48', '2021-05-28 02:00:48'),
+(2, 'Kegiatan Pondok', 'Gallery', '2021-05-28 02:00:48', '2021-05-30 03:56:32'),
 (3, 'Pengumuman', 'Berita', '2021-05-28 02:01:42', '2021-05-28 02:01:42');
 
 -- --------------------------------------------------------
@@ -208,7 +210,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `level`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (3, 'Fahri ari rahman', 'arirahman236@gmail.com', NULL, 'admin', '$2y$10$wIzbHnUaH8MRsOyIwq/dP.m/wVPP7xk8ZURL81MNufNU2ClSc8WWy', NULL, '2021-05-28 23:46:42', '2021-05-28 23:46:42'),
-(7, 'charis saida', 'charis.saida@gmail.com', NULL, 'user', '$2y$10$nponDqMJd.G0ytv9K1hcRuOf6IK2oAS8giS/vLITZgZidYLU8iLWC', NULL, '2021-05-29 00:18:38', '2021-05-29 00:18:38');
+(7, 'charis saida', 'charis.saida@gmail.com', NULL, 'user', '$2y$10$nponDqMJd.G0ytv9K1hcRuOf6IK2oAS8giS/vLITZgZidYLU8iLWC', NULL, '2021-05-29 00:18:38', '2021-05-29 00:18:38'),
+(8, 'coba', 'coba@gmail.com', NULL, 'user', '$2y$10$XDGbybg3oH.8unU.GXJm.O4NoToeVw7E.bPVomOyn2xYjmqN4lIDK', NULL, '2021-05-30 04:05:49', '2021-05-30 04:05:49');
 
 --
 -- Indexes for dumped tables
@@ -284,7 +287,7 @@ ALTER TABLE `abouts`
 -- AUTO_INCREMENT untuk tabel `beritas`
 --
 ALTER TABLE `beritas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -320,7 +323,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
