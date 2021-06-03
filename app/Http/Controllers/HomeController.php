@@ -138,7 +138,7 @@ class HomeController extends Controller
             $namFile = 'berita-'.time().rand(100,999).".".$extFile;
             $path = $request->gambar->move('image',$namFile);
             if(extension_loaded("gd")||extension_loaded("gd2")){
-                $newImage = Image::make($path)->resize(375,375); // panjang, lebar
+                $newImage = Image::make($path)->crop(1000,500); // panjang, lebar
                 $newImage->save($path, 90);
             }
             $berita = new Berita();
@@ -177,7 +177,7 @@ class HomeController extends Controller
                     $namFile = $berita->gambar;
                     $newImagePath = $validateData['gambar']->move('image',$namFile);
                     if(extension_loaded("gd")||extension_loaded("gd2")){
-                        $newImage = Image::make($newImagePath)->resize(375,375); // panjang, lebar
+                        $newImage = Image::make($newImagePath)->crop(1000,500); // panjang, lebar
                         $newImage->save($newImagePath, 90);
                     }
 
@@ -224,7 +224,7 @@ class HomeController extends Controller
             $namFile = 'gallery-'.time().rand(100,999).".".$extFile;
             $path = $request->gambar->move('image',$namFile);
             if(extension_loaded("gd")||extension_loaded("gd2")){
-                $newImage = Image::make($path)->resize(375,375); // panjang, lebar
+                $newImage = Image::make($path)->crop(1000,500); // panjang, lebar
                 $newImage->save($path, 90);
              }
             $gallery = new Gallery();
@@ -263,7 +263,7 @@ class HomeController extends Controller
                     $namFile = $gallery->gambar;
                     $newImagePath = $validateData['gambar']->move('image',$namFile);
                     if(extension_loaded("gd")||extension_loaded("gd2")){
-                        $newImage = Image::make($newImagePath)->resize(375,375); // panjang, lebar
+                        $newImage = Image::make($newImagePath)->crop(1000,500); // panjang, lebar
                         $newImage->save($newImagePath, 90);
                     }
 
