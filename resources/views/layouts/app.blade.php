@@ -91,7 +91,7 @@
     <footer id="footer">
         <div class="container">
         <h3>Pondok Pesantren Nurun Nahdlatain Raha</h3>
-        <p>{{Str::limit($abo->isi_bawah, 200)}}</p>
+        <p>{!! Str::limit($abo->isi_bawah, 200) !!}</p>
         <div class="social-links">
             <a href="{{ $abo->twitter }}" class="twitter"><i class="bx bxl-twitter"></i></a>
             <a href="{{ $abo->facebook }}" class="facebook"><i class="bx bxl-facebook"></i></a>

@@ -12,7 +12,8 @@
             <div class="card-header py-3">
               <!--<h6 class="m-0 font-weight-bold text-primary">Pegawai</h6>-->
               <div class="pull-right">
-                <button class="btn btn-success" data-target="#tambahModal" data-toggle="modal">Tambah</button>
+                <a href="{{ route('beritas.tambah') }}" class="btn btn-success btn-sm">Tambah</i></a>
+                {{-- <button class="btn btn-success" data-target="#tambahModal" data-toggle="modal">Tambah</button> --}}
                   <!-- <a class="btn btn-info text-light" target="_blank" href="cetak-beras.html" >Print</a> -->
               </div>
             </div>
@@ -35,7 +36,7 @@
                             <th>{{$loop->iteration}}</th>
                             <td><a href="{{ route('beritas.edit',['berita'=>$berita->id]) }}">{{$berita->judul}}</a></td>
                             <td><img src="{{ asset($berita->gambar) }}" class="cover-img" style="width: 100px;"></td>
-                            <td>{{Str::limit($berita->isi, 50)}}</td>
+                            <td>{!! Str::limit($berita->isi, 50) !!}</td>
                             <td>{{$berita->nama_kategori}}</td>
                             <td>
                                 <a href="{{ route('beritas.edit',['berita'=>$berita->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
@@ -91,7 +92,7 @@
                                         @empty
                                         Tidak ada data...
                                     @endforelse
-                                  </select>
+                                </select>
                                 @error('nama_kategori')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror

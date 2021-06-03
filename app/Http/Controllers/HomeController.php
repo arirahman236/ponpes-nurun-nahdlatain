@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 class HomeController extends Controller
 {
 
@@ -119,19 +120,27 @@ class HomeController extends Controller
         $kategori = Kategori::where('id_menu', '=', 'Berita')->get();
         return view('admin.admin_berita',['berita' => $berita], ['kategori' => $kategori]);
     }
+    public function tambah_berita()
+    {
+        $kategori = Kategori::where('id_menu', '=', 'Berita')->get();
+        return view('admin.berita_tambah', ['kategori' => $kategori]);
+    }
     public function store_berita(Request $request)
     {
         $validateData = $request->validate([
 
             'judul'         => 'required', 'string', 'max:255',
-            'gambar'        => 'required',
+            'gambar'        => 'required|file|image|max:1024|mimes:jpeg,bmp,png',
             'isi'           => 'required',
             'nama_kategori'   => 'required',
             ]);
             $extFile = $request->gambar->getClientOriginalExtension();
             $namFile = 'berita-'.time().rand(100,999).".".$extFile;
             $path = $request->gambar->move('image',$namFile);
-
+            if(extension_loaded("gd")||extension_loaded("gd2")){
+                $newImage = Image::make($path)->resize(375,375); // panjang, lebar
+                $newImage->save($path, 90);
+            }
             $berita = new Berita();
             $berita->judul = $validateData['judul'];
             $berita->gambar = $path;
@@ -150,7 +159,7 @@ class HomeController extends Controller
     {
         $validateData = $request->validate([
             'judul'         => 'required', 'string', 'max:255',
-            'gambar'        => '',
+            'gambar'        => 'required|file|image|max:1024|mimes:jpeg,bmp,png',
             'isi'           => 'required',
             'nama_kategori'   => 'required',
         ]);
@@ -167,7 +176,10 @@ class HomeController extends Controller
                 }
                     $namFile = $berita->gambar;
                     $newImagePath = $validateData['gambar']->move('image',$namFile);
-
+                    if(extension_loaded("gd")||extension_loaded("gd2")){
+                        $newImage = Image::make($newImagePath)->resize(375,375); // panjang, lebar
+                        $newImage->save($newImagePath, 90);
+                    }
 
                 $berita->gambar = $newImagePath;
             }
@@ -194,19 +206,27 @@ class HomeController extends Controller
         $kategori = Kategori::where('id_menu', '=', 'Gallery')->get();
         return view('admin.admin_gallery',['gallery' => $gallery], ['kategori' => $kategori]);
     }
+    public function tambah_gallery()
+    {
+        $kategori = Kategori::where('id_menu', '=', 'Gallery')->get();
+        return view('admin.gallery_tambah', ['kategori' => $kategori]);
+    }
     public function store_gallery(Request $request)
     {
         $validateData = $request->validate([
 
             'judul'         => 'required', 'string', 'max:255',
-            'gambar'        => 'required',
+            'gambar'        => 'required|file|image|max:1024|mimes:jpeg,bmp,png',
             'isi'           => 'required',
             'nama_kategori'   => 'required',
             ]);
             $extFile = $request->gambar->getClientOriginalExtension();
             $namFile = 'gallery-'.time().rand(100,999).".".$extFile;
             $path = $request->gambar->move('image',$namFile);
-
+            if(extension_loaded("gd")||extension_loaded("gd2")){
+                $newImage = Image::make($path)->resize(375,375); // panjang, lebar
+                $newImage->save($path, 90);
+             }
             $gallery = new Gallery();
             $gallery->judul = $validateData['judul'];
             $gallery->gambar = $path;
@@ -225,7 +245,7 @@ class HomeController extends Controller
     {
         $validateData = $request->validate([
             'judul'         => 'required', 'string', 'max:255',
-            'gambar'        => '',
+            'gambar'        => 'required|file|image|max:1024|mimes:jpeg,bmp,png',
             'isi'           => 'required',
             'nama_kategori'   => 'required',
         ]);
@@ -242,7 +262,10 @@ class HomeController extends Controller
                 }
                     $namFile = $gallery->gambar;
                     $newImagePath = $validateData['gambar']->move('image',$namFile);
-
+                    if(extension_loaded("gd")||extension_loaded("gd2")){
+                        $newImage = Image::make($newImagePath)->resize(375,375); // panjang, lebar
+                        $newImage->save($newImagePath, 90);
+                    }
 
                 $gallery->gambar = $newImagePath;
             }

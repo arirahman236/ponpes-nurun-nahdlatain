@@ -28,7 +28,7 @@
                 @else
                 <h4><a href="{{ route('galleryProfileDetail',$searchs->id) }}">{{$searchs->judul}}</a></h4>
                 @endif
-                <p>{{Str::limit($searchs->isi, 20, '(...)')}}</p>
+                <p>{!! Str::limit($searchs->isi, 20, '(...)') !!}</p>
               </div>
             </div>
             @empty

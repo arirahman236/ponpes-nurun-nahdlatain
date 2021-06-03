@@ -13,7 +13,7 @@
             <div class="col pt-2 pt-lg-0 order-2 order-lg-1 content">
               <h3>{{ $aboutProfile->judul}}</h3>
               <p class="font-italic">
-                {{ $aboutProfile->isi}}
+                {!! $aboutProfile->isi !!}
               </p>
             </div>
           </div>
@@ -25,7 +25,7 @@
 
           <div class="section-title">
             <h2>Contact</h2>
-            <p>{{ $aboutProfile->isi_bawah}}</p>
+            <p>{!! $aboutProfile->isi_bawah !!}</p>
           </div>
 
           <div class="row">

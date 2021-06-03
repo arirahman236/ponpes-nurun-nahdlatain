@@ -63,12 +63,14 @@ Route::delete('/user/{user}', [App\Http\Controllers\HomeController::class,'destr
 
 //berita
 Route::post('/berita', [App\Http\Controllers\HomeController::class,'store_berita'] )->name('beritas.store');
+Route::get('/berita/tambah', [App\Http\Controllers\HomeController::class,'tambah_berita'] )->name('beritas.tambah');
 Route::get('/berita/{berita}/edit', [App\Http\Controllers\HomeController::class,'edit_berita'] )->name('beritas.edit');
 Route::patch('/berita/{berita}', [App\Http\Controllers\HomeController::class,'update_berita'] )->name('beritas.update');
 Route::delete('/berita/{berita}', [App\Http\Controllers\HomeController::class,'destroy_berita'] )->name('beritas.destroy');
 
 //gallery
 Route::post('/gallery', [App\Http\Controllers\HomeController::class,'store_gallery'] )->name('gallerys.store');
+Route::get('/gallery/tambah', [App\Http\Controllers\HomeController::class,'tambah_gallery'] )->name('gallerys.tambah');
 Route::get('/gallery/{gallery}/edit', [App\Http\Controllers\HomeController::class,'edit_gallery'] )->name('gallerys.edit');
 Route::patch('/gallery/{gallery}', [App\Http\Controllers\HomeController::class,'update_gallery'] )->name('gallerys.update');
 Route::delete('/gallery/{gallery}', [App\Http\Controllers\HomeController::class,'destroy_gallery'] )->name('gallerys.destroy');

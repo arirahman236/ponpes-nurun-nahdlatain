@@ -28,7 +28,7 @@
           <div class="portfolio-description">
             <h2>{{ $gallery->judul }}</h2>
             <p>
-                {{ $gallery->isi }}
+                {!! $gallery->isi !!}
             </p>
           </div>
 

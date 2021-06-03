@@ -23,7 +23,7 @@
               </div>
               <div class="portfolio-info">
                 <h4><a href="{{ route('galleryProfileDetail',['gallery'=>$gallery->id]) }}">{{$gallery->judul}}</a></h4>
-                <p>{{Str::limit($gallery->isi, 20, '(...)')}}</p>
+                <p>{!! Str::limit($gallery->isi, 20, '(...)') !!}</p>
               </div>
             </div>
             @empty

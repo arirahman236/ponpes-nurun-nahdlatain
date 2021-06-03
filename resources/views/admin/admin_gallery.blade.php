@@ -12,7 +12,8 @@
             <div class="card-header py-3">
               <!--<h6 class="m-0 font-weight-bold text-primary">Pegawai</h6>-->
               <div class="pull-right">
-                <button class="btn btn-success" data-target="#tambahModal" data-toggle="modal">Tambah</button>
+                <a href="{{ route('gallerys.tambah') }}" class="btn btn-success btn-sm">Tambah</i></a>
+                {{-- <button class="btn btn-success" data-target="#tambahModal" data-toggle="modal">Tambah</button> --}}
                   <!-- <a class="btn btn-info text-light" target="_blank" href="cetak-beras.html" >Print</a> -->
               </div>
             </div>
@@ -35,7 +36,7 @@
                             <th>{{$loop->iteration}}</th>
                             <td><a href="{{ route('gallerys.edit',['gallery'=>$gallery->id]) }}">{{$gallery->judul}}</a></td>
                             <td><img src="{{ asset($gallery->gambar) }}" class="cover-img" style="width: 100px;"></td>
-                            <td>{{Str::limit($gallery->isi, 50)}}</td>
+                            <td>{!! Str::limit($gallery->isi, 50) !!}</td>
                             <td>{{$gallery->nama_kategori}}</td>
                             <td>
                                 <a href="{{ route('gallerys.edit',['gallery'=>$gallery->id]) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>

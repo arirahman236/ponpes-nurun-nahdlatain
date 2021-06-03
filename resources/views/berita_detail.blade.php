@@ -28,7 +28,7 @@
                     <div class="portfolio-description">
                         <h2>{{ $berita->judul }}</h2>
                         <p>
-                            {{ $berita->isi }}
+                            {!! $berita->isi !!}
                         </p>
                     </div>
                 </div>

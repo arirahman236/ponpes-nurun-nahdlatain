@@ -23,7 +23,7 @@
               </div>
               <div class="portfolio-info">
                 <h4><a href="{{ route('beritaProfileDetail',['berita'=>$berita->id]) }}">{{$berita->judul}}</a></h4>
-                <p>{{Str::limit($berita->isi, 20, '(...)')}}</p>
+                <p>{!! Str::limit($berita->isi, 20, '(...)') !!}</p>
               </div>
             </div>
             @empty

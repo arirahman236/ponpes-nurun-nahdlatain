@@ -15,7 +15,7 @@
             <div class="carousel-container">
                 <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Pondok Pesantren Nurun Nahdlatain Raha</span></h2>
-                <p class="animate__animated animate__fadeInUp">{{Str::limit($abo->isi, 200)}}</p>
+                <p class="animate__animated animate__fadeInUp">{!! Str::limit($abo->isi, 200) !!}</p>
                 <a href="{{ route('aboutProfile') }}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                             <img src="{{ asset($berita1->gambar) }}" class="img-fluid" alt="">
                             <h4 class="title"><a href="{{ route('beritaProfileDetail',['berita'=>$berita1->id]) }}">{{$berita1->judul}}</a></h4>
                             <p class="description">
-                                {{ Str::limit($berita1->isi, 300) }}
+                                {!! Str::limit($berita1->isi, 300) !!}
                             </p>
                         @empty
                             data tidak ada...
@@ -84,7 +84,7 @@
                         @forelse ($berita as $berita2)
                             <h4 class="title"><a href="{{ route('beritaProfileDetail',['berita'=>$berita2->id]) }}">{{$berita2->judul}}</a></h4>
                             <h2>{{$berita2->created_at}}</h2>
-                            <p class="description">{{Str::limit($berita2->isi, 200)}}</p>
+                            <p class="description">{!! Str::limit($berita2->isi, 200) !!}</p>
                         @empty
                             data tidak ada...
                         @endforelse
