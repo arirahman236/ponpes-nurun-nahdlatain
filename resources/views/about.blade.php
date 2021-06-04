@@ -55,7 +55,7 @@
 
             <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
                 <div class="info">
-                    <iframe src="https://www.google.com/maps/place/MASJID+NURUN+NAHDLATAIN/@-4.8143015,122.7149429,17z/data=!3m1!4b1!4m5!3m4!1s0x2da24bfb6b385e91:0xbadabfffbaec1aad!8m2!3d-4.8143015!4d122.7171316" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.742008027618!2d122.71494291476269!3d-4.814301496503952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2da24bfb6b385e91%3A0xbadabfffbaec1aad!2sMASJID%20NURUN%20NAHDLATAIN!5e0!3m2!1sid!2sid!4v1622798020130!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
 
